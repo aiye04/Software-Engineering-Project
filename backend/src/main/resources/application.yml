@@ -1,0 +1,10 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: software-engineering-project-backend
+
+app:
+  token-secret: change-me-in-production
+  token-ttl-seconds: 86400
