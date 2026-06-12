@@ -1,6 +1,6 @@
 # Spring Boot 后端 MVP
 
-> **Language:** 中文 | [English](#english)
+> **Language:** 中文 | [English](README_EN.md)
 
 本目录包含一个 Maven + Spring Boot 3 + Java 17 后端 MVP。数据存储在内存中，因此无需配置数据库即可编译运行；`src/main/resources/db/init.sql` 提供了未来关系型数据库的参考结构。
 
