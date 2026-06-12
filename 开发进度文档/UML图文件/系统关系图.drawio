@@ -1,0 +1,75 @@
+<mxfile host="app.diagrams.net" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36">
+  <diagram name="上下文图" id="context-diagram">
+    <mxGraphModel dx="1030" dy="607" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="core" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0288d1;fontSize=14;" value="网络安全战队协同与教学管理平台" vertex="1">
+          <mxGeometry height="100" width="280" x="360" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="db" parent="1" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#f57c00;" value="数据库" vertex="1">
+          <mxGeometry height="60" width="150" x="880" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="im" parent="1" style="whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#388e3c;" value="即时通讯工具\n(QQ/微信)" vertex="1">
+          <mxGeometry height="60" width="150" x="880" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="ctf_platform" parent="1" style="whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#7b1fa2;" value="外部CTF平台" vertex="1">
+          <mxGeometry height="60" width="150" x="880" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="edge1" edge="1" parent="1" source="s3n-f-pbk8fhOctrYwcd-1" style="endArrow=block;html=1;edgeStyle=orthogonalEdgeStyle;startArrow=classic;startFill=1;" target="core" value="发布任务、查看数据看板">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="230" y="120" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge2" edge="1" parent="1" source="s3n-f-pbk8fhOctrYwcd-7" style="endArrow=block;html=1;edgeStyle=orthogonalEdgeStyle;" target="core" value="维护账号、配置权限">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="230" y="430" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge3" edge="1" parent="1" source="s3n-f-pbk8fhOctrYwcd-5" style="startArrow=block;endArrow=block;html=1;edgeStyle=orthogonalEdgeStyle;" target="core" value="分配任务、审核WriteUp、查看进度">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="230" y="230" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge4" edge="1" parent="1" source="s3n-f-pbk8fhOctrYwcd-6" style="startArrow=block;endArrow=block;html=1;edgeStyle=orthogonalEdgeStyle;" target="core" value="提交WriteUp、学习资源、协同作战">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="230" y="330" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge5" edge="1" parent="1" source="core" style="startArrow=block;endArrow=block;html=1;edgeStyle=orthogonalEdgeStyle;" target="db" value="存储/读取用户数据、日志、文章内容">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="690" y="250" />
+              <mxPoint x="690" y="130" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge6" edge="1" parent="1" source="core" style="endArrow=block;html=1;edgeStyle=orthogonalEdgeStyle;" target="im" value="推送通知、报警信息">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge7" edge="1" parent="1" style="endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endFill=1;" target="ctf_platform" value="同步赛事日历、获取题目信息">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="690" y="250" />
+              <mxPoint x="690" y="430" />
+            </Array>
+            <mxPoint x="670" y="250" as="sourcePoint" />
+            <mxPoint x="790" y="470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s3n-f-pbk8fhOctrYwcd-1" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="指导老师" vertex="1">
+          <mxGeometry height="60" width="30" x="130" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s3n-f-pbk8fhOctrYwcd-5" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="战队队长" vertex="1">
+          <mxGeometry height="60" width="30" x="130" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="s3n-f-pbk8fhOctrYwcd-6" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="战队队员" vertex="1">
+          <mxGeometry height="60" width="30" x="130" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="s3n-f-pbk8fhOctrYwcd-7" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="系统管理员" vertex="1">
+          <mxGeometry height="60" width="30" x="130" y="400" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
