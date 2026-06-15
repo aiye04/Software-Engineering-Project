@@ -1,10 +1,8 @@
-# Spring Boot 后端 MVP
+# Spring Boot Backend MVP
 
-> **Language:** 中文 | [English](README_EN.md)
+This directory contains a Maven + Spring Boot 3 + Java 17 backend MVP. Data is stored in memory so it can compile and run without database setup; `src/main/resources/db/init.sql` provides a future relational schema reference.
 
-本目录包含一个 Maven + Spring Boot 3 + Java 17 后端 MVP。数据存储在内存中，因此无需配置数据库即可编译运行；`src/main/resources/db/init.sql` 提供了未来关系型数据库的参考结构。
-
-## 运行
+## Run
 
 ```bash
 mvn test
@@ -12,43 +10,43 @@ mvn package
 mvn spring-boot:run
 ```
 
-应用默认监听 `8080` 端口。
+The application listens on port `8080` by default.
 
-## 默认账号
+## Default accounts
 
-系统预设账号使用 BCrypt 密码哈希存储在内存中：
+Seeded accounts use BCrypt password hashes in memory:
 
-| 用户名 | 密码 | 角色 |
+| Username | Password | Role |
 | --- | --- | --- |
-| `admin` | `Admin@123456` | `ADMIN`（管理员） |
-| `teacher` | `Teacher@123456` | `TEACHER`（教师） |
-| `captain` | `Captain@123456` | `CAPTAIN`（队长） |
+| `admin` | `Admin@123456` | `ADMIN` |
+| `teacher` | `Teacher@123456` | `TEACHER` |
+| `captain` | `Captain@123456` | `CAPTAIN` |
 
-自行注册的新用户默认获得 `TRAINEE`（学员）角色。
+New self-registered users receive the `TRAINEE` role.
 
-## 主要 API
+## Main APIs
 
-所有响应均使用统一格式：
+All responses use the unified shape:
 
 ```json
 {"code":0,"message":"ok","data":{},"timestamp":"2026-01-01T00:00:00Z"}
 ```
 
-已实现的 MVP 端点：
+Implemented MVP endpoints:
 
 - `GET /api/health`
-- `POST /api/auth/login`（登录）
-- `POST /api/auth/register`（注册）
-- `GET /api/auth/me`，需携带 `Authorization: Bearer <token>`
+- `POST /api/auth/login`
+- `POST /api/auth/register`
+- `GET /api/auth/me` with `Authorization: Bearer <token>`
 - `GET/POST/PATCH/DELETE /api/users`
 - `GET/POST/PUT/DELETE /api/competitions`
 - `GET /api/competitions/challenges`
 - `POST /api/competitions/{competitionId}/challenges`
 - `GET/POST /api/writeups?category=web`
 - `GET/POST /api/training/tasks`
-- `POST /api/training/tasks/{taskId}/submissions`，需携带 Bearer token
+- `POST /api/training/tasks/{taskId}/submissions` with bearer token
 - `GET /api/training/submissions`
 - `GET/POST /api/notifications`
 - `GET /api/dashboard`
 
-Token 格式类似 JWT（`payload.signature`），使用 HMAC-SHA256 签名。生产环境中，请替换默认的 `app.token-secret`、按角色添加授权检查，并使用数据库支持的 Repository 持久化数据。
+The token format is JWT-like (`payload.signature`) and signed with HMAC-SHA256. For production, replace the default `app.token-secret`, introduce authorization checks per role, and persist data with database-backed repositories.
