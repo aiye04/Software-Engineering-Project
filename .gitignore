@@ -1,0 +1,32 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.iml
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+logs/
+
+# Java / Maven
+backend/target/
+*.class
+
+# Node / Vite
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Test / coverage
+coverage/
+.nyc_output/
+
+# Docker / runtime
+mysql-data/
+redis-data/
