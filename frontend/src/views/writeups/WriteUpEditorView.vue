@@ -4,6 +4,15 @@
     <el-card shadow="never">
       <el-form :model="form" label-width="96px">
         <el-form-item label="标题"><el-input v-model="form.title" /></el-form-item>
+        <el-form-item label="分类">
+          <el-select v-model="form.category" class="full-width" filterable allow-create default-first-option>
+            <el-option label="Web" value="web" />
+            <el-option label="Crypto" value="crypto" />
+            <el-option label="Pwn" value="pwn" />
+            <el-option label="Reverse" value="reverse" />
+            <el-option label="Misc" value="misc" />
+          </el-select>
+        </el-form-item>
         <el-form-item label="赛事"><el-input v-model="form.eventTitle" /></el-form-item>
         <el-form-item label="题目"><el-input v-model="form.challengeTitle" /></el-form-item>
         <el-form-item label="可见性"><el-select v-model="form.visibility"><el-option label="公开" value="public" /><el-option label="团队可见" value="team" /><el-option label="仅自己" value="private" /></el-select></el-form-item>
@@ -19,7 +28,7 @@
 import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
-import { apiClient, getOrMock } from '@/api/client'
+import { apiClient, getOrMock, requestData } from '@/api/client'
 import { mockWriteUps } from '@/api/mock'
 import type { WriteUp } from '@/api/types'
 
@@ -28,6 +37,7 @@ const router = useRouter()
 const tagInput = ref('')
 const form = reactive<Omit<WriteUp, 'id' | 'updatedAt' | 'tags'>>({
   title: '',
+  category: 'web',
   eventTitle: '',
   challengeTitle: '',
   author: '当前用户',
@@ -37,16 +47,22 @@ const form = reactive<Omit<WriteUp, 'id' | 'updatedAt' | 'tags'>>({
 
 onMounted(async () => {
   if (!props.id) return
-  const list = await getOrMock('/writeups', mockWriteUps)
-  const item = list.find((writeup) => writeup.id === Number(props.id))
+  let item: WriteUp | undefined
+  try {
+    item = await requestData<WriteUp>(apiClient.get(`/writeups/${props.id}`))
+  } catch {
+    const list = await getOrMock('/writeups', mockWriteUps)
+    item = list.find((writeup) => writeup.id === Number(props.id))
+  }
   if (item) {
     Object.assign(form, item)
-    tagInput.value = item.tags.join(',')
+    tagInput.value = (item.tags || []).join(',')
   }
 })
 
 async function save() {
-  const payload = { ...form, tags: tagInput.value.split(',').map((tag) => tag.trim()).filter(Boolean) }
+  const tags = tagInput.value.split(',').map((tag) => tag.trim()).filter(Boolean)
+  const payload = { ...form, tags, authorId: 1 }
   try {
     if (props.id) await apiClient.put(`/writeups/${props.id}`, payload)
     else await apiClient.post('/writeups', payload)

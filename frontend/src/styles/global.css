@@ -33,6 +33,12 @@ a {
   font-weight: 700;
 }
 
+.page-subtitle {
+  margin: 6px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
 .muted {
   color: #6b7280;
 }
@@ -41,4 +47,8 @@ a {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
+}
+
+.full-width {
+  width: 100%;
 }

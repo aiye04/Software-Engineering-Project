@@ -1,5 +1,6 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
+import axios from 'axios'
 import { apiClient, unwrapResult } from '@/api/client'
 import type { ApiResult, User, UserRole } from '@/api/types'
 
@@ -54,7 +55,10 @@ export const useAuthStore = defineStore('auth', () => {
       const response = await apiClient.post<ApiResult<AuthResponse> | AuthResponse>('/auth/login', payload)
       const data = unwrapResult<AuthResponse>(response.data)
       setSession(data.token, normalizeUser(data.user))
-    } catch {
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        throw error
+      }
       const demoUser: AuthUser = {
         id: 1,
         username: payload.username || 'admin',

@@ -12,7 +12,7 @@
           <el-input v-model="form.username" placeholder="admin / teacher" autocomplete="username" />
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input v-model="form.password" type="password" show-password placeholder="任意密码可进入 mock 模式" autocomplete="current-password" />
+          <el-input v-model="form.password" type="password" show-password placeholder="Admin@123456" autocomplete="current-password" />
         </el-form-item>
         <el-button type="primary" size="large" :loading="loading" class="full" @click="submit">登录</el-button>
       </el-form>
@@ -32,7 +32,7 @@ const route = useRoute()
 const authStore = useAuthStore()
 const formRef = ref<FormInstance>()
 const loading = ref(false)
-const form = reactive({ username: 'admin', password: 'admin123' })
+const form = reactive({ username: 'admin', password: 'Admin@123456' })
 const rules: FormRules = {
   username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
   password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
@@ -45,6 +45,8 @@ async function submit() {
     await authStore.login(form)
     ElMessage.success('登录成功')
     router.replace(String(route.query.redirect || '/dashboard'))
+  } catch {
+    ElMessage.error('登录失败，请检查用户名和密码')
   } finally {
     loading.value = false
   }

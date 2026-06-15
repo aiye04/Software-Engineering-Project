@@ -16,6 +16,7 @@ export interface User {
   email?: string
   status?: 'active' | 'disabled'
   enabled?: boolean
+  createdAt?: string
   lastLogin?: string
 }
 
@@ -33,9 +34,11 @@ export interface EventItem {
 
 export interface Challenge {
   id: number
+  competitionId?: number
   title: string
   category: string
   score: number
+  description?: string
   solved?: number
   status?: string
   claimedBy?: number
@@ -76,7 +79,7 @@ export interface NotificationItem {
   type?: 'system' | 'event' | 'training'
   level?: string
   read: boolean
-  createdAt: string
+  createdAt?: string
   content: string
 }
 

@@ -46,3 +46,8 @@ export async function getOrMock<T>(url: string, mockData: T): Promise<T> {
     return mockData
   }
 }
+
+export async function requestData<T>(request: Promise<{ data: ApiResult<T> | T }>): Promise<T> {
+  const response = await request
+  return unwrapResult<T>(response.data)
+}
